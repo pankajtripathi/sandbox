@@ -2,6 +2,17 @@ package strings;
 
 import java.util.HashMap;
 
+/*
+*
+Input:
+"abccccdd"
+
+Output:
+7
+
+Explanation:
+One longest palindrome that can be built is "dccaccd", whose length is 7.
+* */
 public class LongestPalindrome {
     public static void main(String[] args) {
         String str = "abccccdd";

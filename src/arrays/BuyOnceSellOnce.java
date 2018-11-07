@@ -10,7 +10,7 @@ public class BuyOnceSellOnce {
         sellStock(arr);
 
         int[] arr1 = {2, 3, 1, 1, 1, 1, 9};
-        subarry(arr1);
+        subarray(arr1);
     }
 
     static class Stock {
@@ -66,7 +66,7 @@ public class BuyOnceSellOnce {
         System.out.println(maxPrice);
     }
 
-    private static void subarry(int[] arr) {
+    private static void subarray(int[] arr) {
         int n = arr.length;
         int i = 0;
 

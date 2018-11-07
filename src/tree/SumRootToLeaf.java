@@ -35,9 +35,9 @@ public class SumRootToLeaf {
         sum = sum * 10 + root.data;
 
         if (root.left == null && root.right == null) return sum;
-        int leftTree = sumNumbersHelper(root.left, sum);
-        int rightTree = sumNumbersHelper(root.right, sum);
+        int leftTreeSum = sumNumbersHelper(root.left, sum);
+        int rightTreeSum = sumNumbersHelper(root.right, sum);
 
-        return leftTree + rightTree;
+        return leftTreeSum + rightTreeSum;
     }
 }
