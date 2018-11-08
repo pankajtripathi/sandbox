@@ -23,7 +23,7 @@ public class CollectingApples {
 
         int[][] dp = new int[m][n];
 
-        // This is straight forward coz yiu start from top left so you can come to a cell from left or from top
+        // This is straight forward coz you start from top left so you can come to a cell from left or from top
         // hence once you arrive at a cell you check whether coming from left was max or coming from top
         for (int row = 0; row < m; row++) {
             for (int col = 0; col < n; col++) {
