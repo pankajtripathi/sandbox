@@ -4,27 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Coordinate {
-    public int x;
-    public int y;
-
-    Coordinate(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Coordinate that = (Coordinate) obj;
-        return x == that.x && y == that.y;
-    }
-}
-
 public class SearchMaze {
     public enum Color { BLACK, WHITE }
 
