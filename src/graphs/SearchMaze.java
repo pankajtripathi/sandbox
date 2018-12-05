@@ -33,10 +33,8 @@ public class SearchMaze {
 
         final int[][] directions = { {0, 1},{0, -1}, {1, 0}, {-1, 0} };
         for (int[] direction : directions) {
-            if (isSearchHelper(maze,
-                    new Coordinate(current.x + direction[0], current.y + direction[1]),
-                    exit,
-                    path)) {
+            Coordinate next = new Coordinate(current.x + direction[0], current.y + direction[1]);
+            if (isSearchHelper(maze, next, exit, path)) {
                 return true;
             }
         }
@@ -47,9 +45,11 @@ public class SearchMaze {
     }
 
     private boolean isFeasible(List<List<Color>> maze, Coordinate current) {
-        return current.x >= 0 && current.x < maze.size() &&
-                current.y >= 0 && current.y < maze.get(current.x).size()
-                 && maze.get(current.x).get(current.y) == Color.WHITE;
+        return current.x >= 0
+                && current.x < maze.size()
+                && current.y >= 0
+                && current.y < maze.get(current.x).size()
+                && maze.get(current.x).get(current.y) == Color.WHITE;
     }
 
     public static void main(String[] args) {
