@@ -3,7 +3,7 @@ package graphs;
 import java.util.*;
 
 public class Graph {
-    static boolean isDirected = false;
+    boolean isDirected = false;
     Map<Object, List<Object>> graph;
     Set<Object> visited;
 
