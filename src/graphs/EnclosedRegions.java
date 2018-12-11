@@ -2,6 +2,10 @@ package graphs;
 
 import java.util.*;
 
+/*
+* Let A be a 2D array whose entries are either W or B. Write a program that takes A and replaces all Ws that cannot
+* reach the boundary with a B.
+* */
 public class EnclosedRegions {
     public void fillSurroundedRegion(List<List<Character>> board) {
         for (int i = 0; i < board.size(); i++) {
