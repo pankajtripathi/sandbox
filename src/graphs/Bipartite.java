@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+
 // Problem is similar to Making Wired Connections problem from EPI.
 public class Bipartite {
     static class GraphVertex {
@@ -31,18 +32,57 @@ public class Bipartite {
         queue.add(v);
 
         while (!queue.isEmpty()) {
-            for (GraphVertex e : queue.peek().vertices) {
+            GraphVertex ver = queue.poll();
+
+            for (GraphVertex e : ver.vertices) {
                 // if not visited set it to parent's label + 1 and add to queue.
                 if (e.label == -1) {
-                    e.label = queue.peek().label + 1;
+                    e.label = ver.label + 1;
                     queue.add(e);
-                } else if (e.label == queue.peek().label) {
+                } else if (e.label == ver.label) {
+                    return false;
+                }
+            }
+            queue.remove();
+        }
+
+        return true;
+    }
+
+    private boolean isBipartite(int[][] graph) {
+        if (graph == null || graph.length == 0) return true;
+
+        int[] color = new int[graph.length];
+        for (int i = 0; i < color.length; i++) {
+            color[i] = -1;
+        }
+
+        for (int i = 0; i < color.length; i++) {
+            if (color[i] == -1 && !isBipartiteHelper(i, graph, color)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isBipartiteHelper(int vertex, int[][] graph, int[] color) {
+        Queue<Integer> queue = new ArrayDeque<>();
+        color[vertex] = 0;
+        queue.add(vertex);
+
+        while (!queue.isEmpty()) {
+            int ver = queue.poll();
+
+            for (int child : graph[ver]) {
+                if (color[child] == -1) {
+                    color[child] = color[ver] + 1;
+                    queue.add(child);
+                } else if (color[child] == color[ver]) {
                     return false;
                 }
             }
         }
 
-        queue.remove();
         return true;
     }
 
@@ -71,5 +111,8 @@ public class Bipartite {
         vertices.add(third);
 
         System.out.println(new Bipartite().canBePlacedInTwoGroups(vertices));
+
+        int[][] demo = {{1,3},{0,2},{1,3},{0,2}};
+        System.out.println(new Bipartite().isBipartite(demo));
     }
 }
