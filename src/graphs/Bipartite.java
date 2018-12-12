@@ -43,7 +43,6 @@ public class Bipartite {
                     return false;
                 }
             }
-            queue.remove();
         }
 
         return true;
