@@ -6,10 +6,23 @@ public class Graph {
     boolean isDirected = false;
     Map<Object, List<Object>> graph;
     Set<Object> visited;
+    int V;
+    int E;
+    Edge[] edge;
 
     Graph() {
         this.graph = new HashMap();
         this.visited = new HashSet<>();
+    }
+
+    Graph(int v, int e) {
+        V = v;
+        E = e;
+
+        edge = new Edge[e];
+        for (int i = 0; i < e; i++) {
+            edge[i] = new Edge();
+        }
     }
 
     void traverse(){
@@ -20,6 +33,10 @@ public class Graph {
 
     Map<Object, List<Object>> getGraph(){
         return graph;
+    }
+
+    Edge[] getEdges() {
+        return edge;
     }
 
     Set<Object> getVisited(){
@@ -52,5 +69,21 @@ public class Graph {
         obj.addEdge("C", "E");
         obj.addEdge("D", "E");
         obj.traverse();
+    }
+
+    class Edge implements Comparable<Edge> {
+        Integer source;
+        Integer destination;
+        Integer weight;
+
+        @Override
+        public int compareTo(Edge o) {
+            return Integer.compare(this.weight, o.weight);
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(this.weight);
+        }
     }
  }
