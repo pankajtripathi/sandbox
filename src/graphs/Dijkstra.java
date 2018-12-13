@@ -102,17 +102,17 @@ public class Dijkstra {
     }
 
     private String getNodeWithLowestDistance(Map<String, Integer> distance, Set<String> unvisited) {
-        Map<String, Integer> sortedMap = distance.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        String first = null;
+        int min = Integer.MAX_VALUE;
 
-        for (String key : sortedMap.keySet()) {
-            if (unvisited.contains(key))
-                return key;
+        for (String node : distance.keySet()) {
+            if (distance.get(node) < min && unvisited.contains(node)) {
+                min = distance.get(node);
+                first = node;
+            }
         }
 
-        return null;
+        return first;
     }
 
     private Map<String, Integer> shortestPathWithPriorityQueue(Graph graph, String source) {
