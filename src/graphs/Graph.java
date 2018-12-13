@@ -72,8 +72,8 @@ public class Graph {
     }
 
     class Edge implements Comparable<Edge> {
-        Integer source;
-        Integer destination;
+        Object source;
+        Object destination;
         Integer weight;
 
         @Override
