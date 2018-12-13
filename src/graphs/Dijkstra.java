@@ -53,8 +53,13 @@ public class Dijkstra {
         vertexMap.put(2, "C");
         vertexMap.put(3, "D");
 
-        Map<String, Integer> distance = new Dijkstra().shortestPath(graph, "A");
-        System.out.println(distance);
+        // O(V^2)
+        Map<String, Integer> distance1 = new Dijkstra().shortestPath(graph, "A");
+        System.out.println(distance1);
+
+        // O(E + V log V)
+        Map<String, Integer> distance2 = new Dijkstra().shortestPathWithPriorityQueue(graph, "A");
+        System.out.println(distance2);
     }
 
     private Map<String, Integer> shortestPath(Graph graph, String source) {
@@ -108,5 +113,58 @@ public class Dijkstra {
         }
 
         return null;
+    }
+
+    private Map<String, Integer> shortestPathWithPriorityQueue(Graph graph, String source) {
+        PriorityQueue<Vertex> queue = new PriorityQueue<>();
+        Map<String, Integer> distance = new HashMap<>();
+        Map<String, String> previous = new HashMap<>();
+
+        for(int i = 0; i < V; i++) {
+            String node = vertexMap.get(i);
+
+            if (node.equals(source)) {
+                distance.put(node, 0);
+            } else {
+                distance.put(node, Integer.MAX_VALUE);
+            }
+
+            queue.add(new Vertex(node, distance.get(node)));
+            previous.put(node, null);
+        }
+
+        while (!queue.isEmpty()) {
+            String current = queue.poll().label;
+
+            for (Graph.Edge edge : graph.edge) {
+                // if source is not the current node
+                if (!edge.source.equals(current))
+                    continue;
+
+                int alt = distance.get(current) + edge.weight;
+
+                if (alt < distance.get(edge.destination.toString())) {
+                    distance.put(edge.destination.toString(), alt);
+                    previous.put(edge.destination.toString(), current);
+                }
+            }
+        }
+
+        return distance;
+    }
+
+    class Vertex implements Comparable<Vertex> {
+        String label;
+        Integer distance;
+
+        Vertex(String label, Integer distance) {
+            this.label = label;
+            this.distance = distance;
+        }
+
+        @Override
+        public int compareTo(Vertex o) {
+            return Integer.compare(this.distance, o.distance);
+        }
     }
 }
