@@ -6,6 +6,7 @@ public class TopologicalSorting {
     static Map<Object , List<Object>> graph;
     static Set<Object> visited = new HashSet<>();
     static Stack<Object> stack = new Stack<>();
+    static LinkedList<Object> result = new LinkedList<>();
 
     public static void main(String[] args) {
         Graph g = new Graph();
@@ -29,6 +30,8 @@ public class TopologicalSorting {
         while (!stack.isEmpty()) {
             System.out.println(stack.pop().toString());
         }
+
+        System.out.println(result);
     }
 
     private void dfs(Object vertex) {
@@ -42,5 +45,6 @@ public class TopologicalSorting {
 
         visited.add(vertex);
         stack.push(vertex);
+        result.addFirst(vertex);
     }
 }
