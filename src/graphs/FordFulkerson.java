@@ -50,15 +50,13 @@ public class FordFulkerson {
 
     private int fordFulkerson(int[][] graph, int source, int sink) {
         // residual graph
-        int rGraph[][] = new int[graph.length][graph.length];
+        int[][] rGraph = new int[graph.length][graph.length];
         for (int u = 0; u < graph.length; u++) {
-            for (int v = 0; v < graph.length; v++) {
-                rGraph[u][v] = graph[u][v];
-            }
+            System.arraycopy(graph[u], 0, rGraph[u], 0, graph.length);
         }
 
         // This array is filled by BFS and to store path
-        int parent[] = new int[graph.length];
+        int[] parent = new int[graph.length];
         int max_flow = 0;  // There is no flow initially
 
         while (bfs(rGraph, source, sink, parent)) {
