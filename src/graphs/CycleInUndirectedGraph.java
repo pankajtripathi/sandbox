@@ -30,6 +30,11 @@ public class CycleInUndirectedGraph {
             System.out.println("Graph contains cycle");
         else
             System.out.println("Graph doesn't contain cycle");
+
+        if(obj.isCyclicCheck())
+            System.out.println("Graph contains cycle");
+        else
+            System.out.println("Graph doesn't contain cycle");
     }
 
     private boolean isCyclic() {
@@ -59,5 +64,33 @@ public class CycleInUndirectedGraph {
             }
         }
         return false;
+    }
+
+
+    // 2nd approach using union find
+    private boolean isCyclicCheck() {
+        int[] parents = new int[1000];
+        for (int i = 0; i < parents.length; i++) {
+            parents[i] = i;
+        }
+
+        for (Object node : graph.keySet()) {
+            for (Object child : graph.get(node)) {
+                int root1 = (int) findParent(parents, (Integer) node);
+                int root2 = (int) findParent(parents, (Integer) child);
+
+                if (root1 == root2) return true;
+
+                parents[root2] = root1;
+            }
+        }
+
+        return false;
+    }
+
+    private int findParent(int[] parents, int node) {
+        if (node == parents[node])
+            return node;
+        return findParent(parents, parents[node]);
     }
 }
