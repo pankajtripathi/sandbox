@@ -1,7 +1,6 @@
 package graphs;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 // source => https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 public class Dijkstra {

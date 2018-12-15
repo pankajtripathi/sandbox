@@ -3,16 +3,13 @@ package graphs;
 import java.util.*;
 
 public class Graph {
-    boolean isDirected = false;
     Map<Object, List<Object>> graph;
-    Set<Object> visited;
-    int V;
-    int E;
+    private int V;
+    private int E;
     Edge[] edge;
 
     Graph() {
-        this.graph = new HashMap();
-        this.visited = new HashSet<>();
+        this.graph = new HashMap<>();
     }
 
     Graph(int v, int e) {
@@ -25,7 +22,7 @@ public class Graph {
         }
     }
 
-    void traverse(){
+    public void traverse(){
         for (Object key : graph.keySet()) {
             System.out.println(key + " : " + graph.get(key));
         }
@@ -39,10 +36,6 @@ public class Graph {
         return edge;
     }
 
-    Set<Object> getVisited(){
-        return visited;
-    }
-
     void addEdge(Object source, Object destination) {
         if (graph.containsKey(source)) {
             graph.get(source).add(destination);
@@ -50,13 +43,6 @@ public class Graph {
             List<Object> init = new ArrayList<>();
             init.add(destination);
             graph.put(source, init);
-
-            visited.add(source);
-        }
-
-        if (isDirected) {
-            graph.put(destination, new ArrayList<>());
-            visited.add(destination);
         }
     }
 
