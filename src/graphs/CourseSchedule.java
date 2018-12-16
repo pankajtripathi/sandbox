@@ -62,6 +62,7 @@ class CourseSchedule {
             }
         }
 
+        System.out.println("Has Cycle: " + hasCycle);
         return res;
     }
 
