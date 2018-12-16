@@ -21,7 +21,7 @@ public class SameTree {
         System.out.println("Both trees are same: " + tree1.isSameTree(tree1.root, tree2.root));
     }
 
-    private boolean isSameTree(Node p, Node q) {
+    boolean isSameTree(Node p, Node q) {
         if (p == null && q == null) return true;
         if (p == null || q == null) return false;
 
