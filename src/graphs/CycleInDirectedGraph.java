@@ -1,9 +1,7 @@
 package graphs;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class CycleInDirectedGraph {
     static Map<Object, List<Object>> graph;
@@ -28,37 +26,32 @@ public class CycleInDirectedGraph {
     }
 
     private boolean isCyclic() {
-        Set<Object> visited = new HashSet<>();
-        Set<Object> visitedStack = new HashSet<>();
+        int[] visited = new int[1000];
 
         for (Object node : graph.keySet()) {
-            if (isCyclicUtil(node, visited, visitedStack))
+            if (isCyclicUtil(node, visited))
                 return true;
         }
         return false;
     }
 
-    // if a node is in the stack then there is a cycle
-    private boolean isCyclicUtil(Object node, Set<Object> visited, Set<Object> visitedStack) {
-        // add current node to visited and in the stack
-        visited.add(node);
-        visitedStack.add(node);
+    private boolean isCyclicUtil(Object node, int[] visited) {
+        // same node seen again as child of itself
+        if (visited[(Integer)node] == -1) return true;
 
-        // if the child is not visited then add to visited and make recursive call
-        // if it's visited and in the stack then cycle exists
+        if (visited[(Integer)node] == 1) return false;
+
+
+        visited[(Integer)node] = -1;
         if (graph.containsKey(node)) {
             for (Object child : graph.get(node)) {
-                if (!visited.contains(child)) {
-                    visited.add(child);
-                    isCyclicUtil(child, visited, visitedStack);
-                } else if (visitedStack.contains(child)) {
+                if (isCyclicUtil(child, visited))
                     return true;
-                }
             }
         }
 
-        // once checked for all child nodes then remove the node and return false
-        visitedStack.remove(node);
+        // only when done seeing all the children set it to 1
+        visited[(Integer) node] = 1;
         return false;
     }
 }
