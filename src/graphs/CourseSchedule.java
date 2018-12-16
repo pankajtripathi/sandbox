@@ -27,7 +27,7 @@ class CourseSchedule {
     int index;
     int[] res;
 
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
+    private int[] findOrder(int numCourses, int[][] prerequisites) {
         if (numCourses == 0) return new int[0];
 
         // set index and construct res array
@@ -66,7 +66,7 @@ class CourseSchedule {
     }
 
 
-    public boolean isCyclic(Integer node, Map<Integer, List<Integer>> graph, int[] visited) {
+    private boolean isCyclic(Integer node, Map<Integer, List<Integer>> graph, int[] visited) {
         if (visited[node] == -1) return true;
         if (visited[node] == 1) return false;
 
