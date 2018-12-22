@@ -56,14 +56,14 @@ public class BuyOnceSellOnce {
     }
 
     private static void maximizeProfit(int[] arr) {
-        int maxPrice = 0;
+        int maxProfit = 0;
         int minPrice = Integer.MAX_VALUE;
 
         for (int price : arr) {
-            maxPrice = Math.max(maxPrice, price - minPrice);
+            maxProfit = Math.max(maxProfit, price - minPrice);
             minPrice = Math.min(price, minPrice);
         }
-        System.out.println(maxPrice);
+        System.out.println(maxProfit);
     }
 
     private static void subarray(int[] arr) {
