@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SumOfNumberInArray {
+public class TwoSum {
     public static void main(String[] args) {
         int[] arr =  {1, 4, 45, 6, 10, -8};
         System.out.println(findSumInArray(arr, 16));
@@ -18,7 +18,7 @@ public class SumOfNumberInArray {
 
         Arrays.sort(arr);
 
-        while (low <= high) {
+        while (low < high) {
             if (arr[low] + arr[high] == num) return true;
 
             if (arr[low] + arr[high] < num) {
