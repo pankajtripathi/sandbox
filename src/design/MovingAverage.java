@@ -1,5 +1,6 @@
 package design;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -22,7 +23,7 @@ public class MovingAverage {
     double avg;
 
     public MovingAverage(int size) {
-        this.queue = new LinkedList();
+        this.queue = new ArrayDeque<>();
         this.size = size;
     }
 
