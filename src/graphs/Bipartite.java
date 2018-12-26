@@ -10,7 +10,7 @@ import java.util.Queue;
 public class Bipartite {
     static class GraphVertex {
         int label = -1;
-        List<GraphVertex> vertices = new ArrayList<>();
+        List<GraphVertex> vertices;
 
         GraphVertex(int label) {
             this.label = label;
