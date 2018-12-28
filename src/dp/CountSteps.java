@@ -10,14 +10,14 @@ public class CountSteps {
     }
 
     private int printCountDP(int dist) {
+        if (dist == 0 || dist == 1 || dist == 2) return dist;
         int[] count = new int[dist + 1];
 
         count[0] = 1;
         count[1] = 1;
-        count[2] = 2;
 
-        for (int i = 3; i <= dist; i++) {
-            count[i] = count[i-1] + count[i-2] + count[i-3];
+        for (int i = 2; i <= dist; i++) {
+            count[i] = count[i-1] + count[i-2];
         }
 
         return count[dist];
