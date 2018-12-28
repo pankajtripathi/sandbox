@@ -15,10 +15,7 @@ public class FlattenBTToLL {
 //        new FlattenBTToLL().flatten(tree.root);
 //        System.out.println(new BinaryTreeBFSWithQueue().bfs(tree.root));
 
-//        new FlattenBTToLL().flattenRec(tree.root);
-//        System.out.println(new BinaryTreeBFSWithQueue().bfs(tree.root));
-
-        new FlattenBTToLL().flattenToLL(tree.root);
+        new FlattenBTToLL().flattenRec(tree.root);
         System.out.println(new BinaryTreeBFSWithQueue().bfs(tree.root));
     }
 
@@ -44,37 +41,13 @@ public class FlattenBTToLL {
         }
     }
 
-    Node pre = null;
+    Node prev = null;
     private void flattenRec(Node root) {
-        helper(root);
-    }
-
-    private void helper(Node root) {
         if (root == null) return;
-        helper(root.right); // right in rec stack
-        helper(root.left); // left in rec stack
-        root.left = null; // set left as null
-        root.right = pre; // set right to pre
-        pre = root;  // pre to root
-    }
-
-    private void flattenToLL(Node root) {
-        if (root == null) return;
-        Node p = root;
-
-        while (p.left != null || p.right != null) {
-            if (p.left != null) {
-                Node rightChild = p.right;
-                p.right = p.left;
-                p.left = null;
-
-                Node rm = p.right;
-                while (rm.right != null) {
-                    rm = rm.right;
-                }
-                rm.right = rightChild;
-            }
-            p = p.right;
-        }
+        flattenRec(root.right);
+        flattenRec(root.left);
+        root.left = null;
+        root.right = prev;
+        prev = root;
     }
 }
