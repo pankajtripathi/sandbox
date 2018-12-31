@@ -35,8 +35,9 @@ public class AddTwoNumbers {
         Node head = new Node(0);
         Node currentHead = head;
 
-        int sum = 0;
+        int carry = 0;
         while (current1 != null || current2 != null) {
+            int sum = carry;
             if (current1 != null) {
                 sum += current1.data;
                 current1 = current1.next;
@@ -50,10 +51,10 @@ public class AddTwoNumbers {
             currentHead.next = new Node(sum % 10);
             currentHead = currentHead.next;
 
-            sum /= 10;
+            carry = sum / 10;
         }
 
-        if (sum / 10 == 1) {
+        if (carry != 0) {
             currentHead.next = new Node(1);
         }
         return head;
