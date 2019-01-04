@@ -15,6 +15,8 @@ public class LinkedListCycle {
         list.head.next.next.next.next.next = list.head.next.next;
         System.out.println("List has a loop? "+ list.detectLoop(list.head));
 
+        Node loopHead = new LinkedListCycle().detectCycle(list.head);
+        System.out.println(loopHead.data);
     }
 
     private boolean detectLoop(Node head) {
@@ -28,5 +30,28 @@ public class LinkedListCycle {
         }
 
         return slow == fast;
+    }
+
+    private Node detectCycle(Node head) {
+        if (head == null || head.next == null) return null;
+        Node slow = head;
+        Node fast = head.next;
+
+        while (slow != fast) {
+            if (fast == null || fast.next == null) return null;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // if it has loop then start with slow as head and then keep iterating slow until it catches up with fast.next
+        if (slow == fast) {
+            slow = head;
+            while (slow != fast.next) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+        }
+
+        return fast.next;
     }
 }
