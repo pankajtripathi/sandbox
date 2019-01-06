@@ -25,7 +25,7 @@ public class PalindromeLinkedList {
         list.head.next.next = new Node(2);
         list.head.next.next.next = new Node(1);
 
-        System.out.println(new PalindromeLinkedList().isPalindrome(list.head));
+        System.out.println(new PalindromeLinkedList().isLinkedListPalindrome(list.head));
     }
 
     private boolean isPalindrome(Node head) {
@@ -45,5 +45,47 @@ public class PalindromeLinkedList {
         }
 
         return true;
+    }
+
+    private boolean isLinkedListPalindrome(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        // how to find mid of a LL
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node firstHalf = head;
+        Node reversedSecHalf = reverse(slow);
+
+        while (firstHalf != null && reversedSecHalf != null) {
+            if (firstHalf.data != reversedSecHalf.data) {
+                return false;
+            }
+
+            firstHalf = firstHalf.next;
+            reversedSecHalf = reversedSecHalf.next;
+        }
+
+        return true;
+    }
+
+    // Reverse LL
+    private Node reverse(Node head) {
+        if (head == null || head.next == null) return null;
+        Node p = head;
+        Node q = p.next;
+        head.next = null;
+
+        while (p != null && q != null) {
+            Node temp = q.next;
+            q.next = p;
+            p = q;
+            q = temp;
+        }
+
+        return p;
     }
 }
