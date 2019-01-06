@@ -35,23 +35,24 @@ public class LinkedListCycle {
     private Node detectCycle(Node head) {
         if (head == null || head.next == null) return null;
         Node slow = head;
-        Node fast = head.next;
+        Node fast = head;
 
-        while (slow != fast) {
-            if (fast == null || fast.next == null) return null;
+        while (fast != null && fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-        }
 
-        // if it has loop then start with slow as head and then keep iterating slow until it catches up with fast.next
-        if (slow == fast) {
-            slow = head;
-            while (slow != fast.next) {
-                slow = slow.next;
-                fast = fast.next;
+            // if it has loop then start with slow as head and then keep iterating slow until it catches up with fast.next
+            if (slow == fast) {
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
             }
+
+            return fast;
         }
 
-        return fast.next;
+        return null;
     }
 }
