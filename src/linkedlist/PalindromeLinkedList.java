@@ -22,8 +22,8 @@ public class PalindromeLinkedList {
         PalindromeLinkedList list = new PalindromeLinkedList();
         list.head = new Node(1);
         list.head.next = new Node(2);
-        list.head.next.next = new Node(2);
-        list.head.next.next.next = new Node(1);
+//        list.head.next.next = new Node(2);
+//        list.head.next.next.next = new Node(1);
 
         System.out.println(new PalindromeLinkedList().isLinkedListPalindrome(list.head));
     }
@@ -59,6 +59,7 @@ public class PalindromeLinkedList {
 
         Node firstHalf = head;
         Node reversedSecHalf = reverse(slow);
+        new ReverseLinkedList().print(reversedSecHalf);
 
         while (firstHalf != null && reversedSecHalf != null) {
             if (firstHalf.data != reversedSecHalf.data) {
@@ -74,7 +75,6 @@ public class PalindromeLinkedList {
 
     // Reverse LL
     private Node reverse(Node head) {
-        if (head == null || head.next == null) return null;
         Node p = head;
         Node q = p.next;
         head.next = null;
