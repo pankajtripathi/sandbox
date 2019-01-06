@@ -30,10 +30,13 @@ public class IntersectionOfTwoLinkedLists {
         while (p != q) {
             if (p == null)
                 p = headB;
-            p = p.next;
+            else
+                p = p.next;
 
-            if (q == null) q = headA;
-            q = q.next;
+            if (q == null)
+                q = headA;
+            else
+                q = q.next;
         }
 
         return p;
