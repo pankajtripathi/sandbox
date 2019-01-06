@@ -50,9 +50,9 @@ public class LinkedListCycle {
                 }
             }
 
-            return fast;
+            return fast; // has cycle
         }
 
-        return null;
+        return null; // No cycle
     }
 }
