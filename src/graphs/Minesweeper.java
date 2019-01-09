@@ -77,15 +77,23 @@ class Minesweeper {
         if (board[i][j] == 'E') {
             board[i][j] = countMines(board, i, j, m, n);
             if (board[i][j] == 'B') {
-                revealBoard(board, i - 1, j, m, n);
-                revealBoard(board, i + 1, j, m, n);
-                revealBoard(board, i, j - 1, m, n);
-                revealBoard(board, i, j + 1, m, n);
+//                revealBoard(board, i - 1, j, m, n);
+//                revealBoard(board, i + 1, j, m, n);
+//                revealBoard(board, i, j - 1, m, n);
+//                revealBoard(board, i, j + 1, m, n);
+//
+//                revealBoard(board, i - 1, j - 1, m, n);
+//                revealBoard(board, i - 1, j + 1, m, n);
+//                revealBoard(board, i + 1, j + 1, m, n);
+//                revealBoard(board, i + 1, j - 1, m, n);
 
-                revealBoard(board, i - 1, j - 1, m, n);
-                revealBoard(board, i - 1, j + 1, m, n);
-                revealBoard(board, i + 1, j + 1, m, n);
-                revealBoard(board, i + 1, j - 1, m, n);
+                for (int row = i - 1; row <= i + 1 && row < m; row++) {
+                    for (int col = j - 1; col <= j + 1 && col < n; col++) {
+                        if (row >= 0 && col >= 0 && board[row][col] == 'M') {
+                            revealBoard(board, row, col, m, n);
+                        }
+                    }
+                }
             }
         }
     }
