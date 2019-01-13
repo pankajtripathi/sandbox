@@ -47,10 +47,10 @@ class Minesweeper {
 
         int[] click = {3, 0};
 
-        new Minesweeper().updateBoard(board, click);
+        char[][] updatedBoard = new Minesweeper().updateBoard(board, click);
 
-        for(int i = 0; i< board.length; i++){
-            for (int j = 0; j < board[0].length; j++) {
+        for (int i = 0; i < updatedBoard.length; i++){
+            for (int j = 0; j < updatedBoard[0].length; j++) {
                 System.out.print(board[i][j] + " ");
             }
             System.out.println();
@@ -89,7 +89,7 @@ class Minesweeper {
 
                 for (int row = i - 1; row <= i + 1 && row < m; row++) {
                     for (int col = j - 1; col <= j + 1 && col < n; col++) {
-                        if (row >= 0 && col >= 0 && board[row][col] == 'M') {
+                        if (row >= 0 && col >= 0) {
                             revealBoard(board, row, col, m, n);
                         }
                     }
@@ -113,17 +113,17 @@ class Minesweeper {
             }
         }
 
-        /* Even these recursive approach is fine
+        // Even these recursive approach is fine
 
-        if (i > 0 && board[i - 1][j] == 'M') count++;
-        if (i + 1 < m && board[i + 1][j] == 'M') count++;
-        if (j > 0 && board[i][j - 1] == 'M') count++;
-        if (j + 1 < n && board[i][j + 1] == 'M') count++;
-        if (i > 0 && j > 0 && board[i - 1][j - 1] == 'M') count++;
-        if (i + 1 < m && j + 1 < n && board[i + 1][j + 1] == 'M') count++;
-        if (i > 0 && j + 1 < n && board[i - 1][j + 1] == 'M') count++;
-        if (i + 1 < m && j > 0 && board[i + 1][j - 1] == 'M') count++;
-        * */
+//        if (i > 0 && board[i - 1][j] == 'M') count++;
+//        if (i + 1 < m && board[i + 1][j] == 'M') count++;
+//        if (j > 0 && board[i][j - 1] == 'M') count++;
+//        if (j + 1 < n && board[i][j + 1] == 'M') count++;
+//        if (i > 0 && j > 0 && board[i - 1][j - 1] == 'M') count++;
+//        if (i + 1 < m && j + 1 < n && board[i + 1][j + 1] == 'M') count++;
+//        if (i > 0 && j + 1 < n && board[i - 1][j + 1] == 'M') count++;
+//        if (i + 1 < m && j > 0 && board[i + 1][j - 1] == 'M') count++;
+
 
         return count == 0 ? 'B' : (char) (count + '0');
     }
