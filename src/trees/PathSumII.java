@@ -28,11 +28,11 @@ public class PathSumII {
     private List<List<Integer>> pathSum(Node root, int sum) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> result = new ArrayList<>();
-        search(root, sum, new ArrayList<Integer>(), result);
+        search(root, sum, new ArrayList<>(), result);
         return result;
     }
 
-    private void search(Node root, int sum, ArrayList<Integer> path, List<List<Integer>> result) {
+    private void search(Node root, int sum, List<Integer> path, List<List<Integer>> result) {
         if (root == null) return;
         sum -= root.data;
         path.add(root.data);
