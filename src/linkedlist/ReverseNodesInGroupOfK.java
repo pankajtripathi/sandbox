@@ -36,6 +36,7 @@ public class ReverseNodesInGroupOfK {
         }
 
         return prevNode;
+        // OP => 3, 2, 1, 5, 4
     }
 
     private Node revereInK(Node head, int k) {
@@ -50,7 +51,8 @@ public class ReverseNodesInGroupOfK {
         }
 
         // 2.reverse k node at current level
-        Node prevNode = revereInKGroup(current, k); //prevNode node point to the the answer of sub-problem
+        Node prevNode = revereInK(current, k); //prevNode node point to the the answer of sub-problem
+
         while (count > 0) {
             Node nextNode = head.next;
             head.next = prevNode;
@@ -60,5 +62,6 @@ public class ReverseNodesInGroupOfK {
         }
 
         return prevNode;
+        // OP => 3, 2, 1, 4, 5
     }
 }
