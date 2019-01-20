@@ -1,4 +1,4 @@
-package arrays;
+package backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Permutation {
     }
 
     private void permutations(int[] nums, List<Integer> temp, List<List<Integer>> result) {
-        if (nums.length == temp.size()) result.add(new ArrayList(temp));
+        if (nums.length == temp.size()) result.add(new ArrayList<>(temp));
         else {
             for (int i = 0; i < nums.length; i++) {
                 if (temp.contains(nums[i])) continue;
