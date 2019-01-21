@@ -7,7 +7,7 @@ public class LongestPalindromicString {
     }
 
     private String getLPS(String str) {
-        String pal = "";
+        String pal;
         String longest = str.substring(0, 1);
 
         for (int i = 0; i < str.length(); i++) {
