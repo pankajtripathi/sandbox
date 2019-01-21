@@ -42,6 +42,7 @@ public class IntersectionOfTwoLinkedLists {
     }
 
     private Node intersection(Node headA, Node headB) {
+        // O(m + n)
         if (headA == null || headB == null) return null;
         int lenA = len(headA);
         int lenB = len(headB);
