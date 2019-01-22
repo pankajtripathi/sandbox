@@ -2,7 +2,7 @@ package trees;
 
 import java.util.Stack;
 
-public class KthSmallest {
+public class KthSmallestInBST {
     public int kthSmallest(Node root, int k) {
         if (root == null) return -1;
         Stack<Node> stack = new Stack<>();
