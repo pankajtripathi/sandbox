@@ -1,4 +1,4 @@
-package trie;
+package design;
 
 import design.TrieNode;
 
