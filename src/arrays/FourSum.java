@@ -33,8 +33,8 @@ public class FourSum {
                         while (low < high && low > 0 && nums[low - 1] == nums[low])
                             low++;
 
-                        while (low < high && high < nums.length - 1 && nums[high + 1] == nums[low])
-                            high++;
+                        while (low < high && high < nums.length - 1 && nums[high + 1] == nums[high])
+                            high--;
 
                     } else if (target > nums[low] + nums[high] + nums[i] + nums[j]) {
                         low++;
