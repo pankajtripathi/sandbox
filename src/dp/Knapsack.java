@@ -38,7 +38,7 @@ public class Knapsack {
     }
 
     private static int knapSackWithoutDP(int W, int[] wt, int[] val, int n) {
-        if (W == 0 || n == 0) return 0;
+        if (n == 0 || W == 0) return 0;
 
         //since last items weight is greater than capacity exclude the last item
         else if (wt[n - 1] > W) return knapSack(W, wt, val, n-1);
