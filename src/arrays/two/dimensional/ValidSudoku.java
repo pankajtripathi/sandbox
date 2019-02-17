@@ -1,4 +1,4 @@
-package arrays;
+package arrays.two.dimensional;
 
 import java.util.HashSet;
 import java.util.Set;
