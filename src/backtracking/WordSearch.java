@@ -71,6 +71,6 @@ public class WordSearch {
                 || i >= board.length
                 || j < 0 || j >= board[0].length
                 || board[i][j] != word.charAt(index)
-                || visited[i][j]) ;
+                || visited[i][j]);
     }
 }
