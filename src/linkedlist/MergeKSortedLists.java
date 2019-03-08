@@ -1,6 +1,7 @@
 package linkedlist;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /*
@@ -41,7 +42,7 @@ public class MergeKSortedLists {
     public Node mergeKLists(Node[] lists) {
         if (lists == null || lists.length == 0) return null;
 
-        PriorityQueue<Node> queue = new PriorityQueue<Node>((Node l1, Node l2) -> Integer.compare(l1.data, l2.data));
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(n -> n.data));
 
         for (Node node : lists) {
             if (node != null) {
