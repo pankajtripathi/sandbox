@@ -9,6 +9,7 @@ public class PrintPrimes {
     }
 
     private void printPrimes(int num) {
+        System.out.println(Integer.compare(11, 10));
         List<Integer> primeNumbers = new ArrayList<>();
         primeNumbers.add(2);
 
