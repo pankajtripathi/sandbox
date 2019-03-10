@@ -1,6 +1,7 @@
 package heap;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /*
@@ -29,7 +30,7 @@ public class MeetingRooms {
         if (intervals == null || intervals.length == 0) return 0;
         if (intervals.length == 1) return 1;
 
-        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1.start, i2.start));
+        Arrays.sort(intervals, Comparator.comparingInt(i2 -> i2.start));
         PriorityQueue<Integer> queue = new PriorityQueue<>();
 
         // get room for first meeting
