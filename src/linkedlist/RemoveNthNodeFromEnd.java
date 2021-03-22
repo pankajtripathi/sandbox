@@ -15,7 +15,7 @@ public class RemoveNthNodeFromEnd {
     }
 
     private Node deleteNth(Node head, int n) {
-        if (head == null || n == 0 || head.next == null) return head;
+        if (head == null || n == 0 || head.next == null) return null;
         Node p = head;
         Node q = head;
 
