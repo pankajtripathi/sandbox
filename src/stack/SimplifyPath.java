@@ -50,4 +50,29 @@ public class SimplifyPath {
 
         return result.toString();
     }
+    
+    public String simplifyPath(String path) {
+        Stack<String> stack = new Stack<>();
+        String[] dirs = path.split("/");
+        
+        for (String dir: dirs) {
+            if (dir.equals("..")) {
+                if (stack.isEmpty() || stack.peek().equals(".."))
+                    stack.add("..");
+                else if (stack.peek().equals("/"))
+                    continue;
+                stack.pop();
+            } else if (!dir.isEmpty() && !dir.equals(".")) {
+                stack.add(dir);
+            }
+        }
+        
+        StringBuilder res = new StringBuilder();
+        for (String item: stack) {
+            res.append("/");
+            res.append(item);
+        }
+        
+        return res.length() > 0 ? res.toString() : "/";
+    }
 }
