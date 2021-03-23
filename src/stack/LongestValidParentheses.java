@@ -47,5 +47,51 @@ public class LongestValidParentheses {
 
         System.out.println(res);
     }
+ 
+ // In this approach, we make use of two counters leftleft and rightright. 
+ // First, we start traversing the string from the left towards the right and for every \text{‘(’}‘(’ encountered, we increment the left
+ // counter and for every \text{‘)’}‘)’ encountered, we increment the rightright counter. 
+ // Whenever leftleft becomes equal to rightright, we calculate the length of the current valid string and keep track of maximum length substring found so far. 
+ // If rightright becomes greater than leftleft we reset left and right to 0.
+
+Next, we start traversing the string from right to left and similar procedure is applied.
+ public int longestValidParentheses(String s) {
+        int left = 0;
+        int right = 0;
+        int max = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            
+            if (left == right) {
+                max = Math.max(max, 2 * right);
+            } else if (right >= left) {
+                left = 0;
+                right = 0;
+            }
+        }
+        
+        left = right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            
+            if (left == right) {
+                max = Math.max(max, 2 * left);
+            } else if (left >= right) {
+                left = 0;
+                right = 0;
+            }
+        }
+        
+        return max;
+    }
 
 }
