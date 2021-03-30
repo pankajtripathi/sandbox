@@ -27,6 +27,7 @@ public class BinaryTreePaths {
     }
 
     private void search(Node root, String path, List<String> result) {
+        if (root == null) return;
         if (root.right == null && root.left == null) result.add(path + root.data);
         if (root.left != null) search(root.left, path + root.data + " -> ", result);
         if (root.right != null) search(root.right, path + root.data + " -> ", result);
