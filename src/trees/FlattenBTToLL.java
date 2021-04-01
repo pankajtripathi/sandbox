@@ -17,9 +17,13 @@ public class FlattenBTToLL {
 
         new FlattenBTToLL().flattenRec(tree.root);
         System.out.println(new BinaryTreeBFSWithQueue().bfs(tree.root));
+
+        new FlattenBTToLL().flattenConstantSpace(tree.root);
+        System.out.println(new BinaryTreeBFSWithQueue().bfs(tree.root));
     }
 
     // Go down through the left, when right is not null, push right to stack.
+    // O(N) and O(N) space
     private void flatten(Node root) {
         if (root == null) return;
         Stack<Node> stack = new Stack<>();
@@ -41,6 +45,7 @@ public class FlattenBTToLL {
         }
     }
 
+    // O(N) and O(N) space
     Node prev = null;
     private void flattenRec(Node root) {
         if (root == null) return;
@@ -49,5 +54,25 @@ public class FlattenBTToLL {
         root.left = null;
         root.right = prev;
         prev = root;
+    }
+
+    private void flattenConstantSpace(Node root) {
+        if (root == null) return;
+        Node node = root;
+
+        while (node != null) {
+            if (node.left != null) {
+                Node rightMost = node.left;
+
+                while (rightMost.right != null) {
+                    rightMost = rightMost.right;
+                }
+
+                rightMost.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
+        }
     }
 }

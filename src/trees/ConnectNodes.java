@@ -14,11 +14,13 @@ public class ConnectNodes {
          3            90
         */
         ConnectNodes tree = new ConnectNodes();
-        tree.root = new Node(10);
-        tree.root.left = new Node(8);
-        tree.root.right = new Node(2);
-        tree.root.left.left = new Node(3);
-        tree.root.right.right = new Node(90);
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = null;
+        tree.root.right.left = null;
+        tree.root.right.right = new Node(5);
 
         // Populates nextRight pointer in all nodes
         tree.connect(tree.root);

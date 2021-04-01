@@ -18,16 +18,13 @@ public class SameTree {
         tree2.root.left.left=new Node(4);
 //        tree2.root.left.right=new Node(5);
 
-        System.out.println("Both trees are same: " + tree1.isSameTree(tree1.root, tree2.root));
+        System.out.println("Both trees are same?: " + tree1.isSameTree(tree1.root, tree2.root));
     }
 
     boolean isSameTree(Node p, Node q) {
         if (p == null && q == null) return true;
         if (p == null || q == null) return false;
 
-        if (p.data == q.data) {
-            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-        }
-        return false;
+        return p.data == q.data && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
