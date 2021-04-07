@@ -48,7 +48,8 @@ class WordLadder {
         wordList.add("log");
         wordList.add("cog");
 
-        System.out.println(new WordLadder().ladderLength(beginWord, endWord, wordList));
+        // System.out.println(new WordLadder().ladderLength(beginWord, endWord, wordList));
+        System.out.println(new WordLadder().findLadders(beginWord, endWord, wordList));
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
@@ -106,5 +107,50 @@ class WordLadder {
             this.word = word;
             this.len = len;
         }
+    }
+
+    // Difference in both question is that here we need queue of list of words that lead to endWord
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> result = new ArrayList<>();
+        if (wordList == null || wordList.size() == 0)
+            return result;
+        // Create set of wordList
+        Set<String> wordSet = new HashSet<>();
+        wordSet.addAll(wordList);
+        // Start by adding beginWord in the queue
+        Queue<List<String>> queue = new ArrayDeque<>();
+        List<String> list = new ArrayList<>();
+        list.add(beginWord);
+        queue.add(list);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            Set<String> visited = new HashSet<>();
+            for (int i = 0; i < size; i++) {
+                // Get last word from the path and see if it is equal to endWord
+                List<String> currentPath = queue.poll();
+                String current = currentPath.get(currentPath.size() - 1);
+                if (current.equals(endWord)) {
+                    result.add(currentPath);
+                }
+                // Create char array of last word and replace one character and see if it exists in the wordList
+                for (int j = 0; j < current.length(); j++) {
+                    char[] chars = current.toCharArray();
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        chars[j] = ch;
+                        String word = new String(chars);
+                        if (wordSet.contains(word)) {
+                            List<String> updatedList = new ArrayList<>(currentPath);
+                            updatedList.add(word);
+                            visited.add(word);
+                            queue.add(updatedList);
+                        }
+                    }
+                }
+            }
+
+            wordSet.removeAll(visited);
+        }
+        return result;
     }
 }
