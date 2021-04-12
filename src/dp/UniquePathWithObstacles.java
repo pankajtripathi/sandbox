@@ -15,7 +15,7 @@ public class UniquePathWithObstacles {
         int m = matrix.length;
         int n = matrix[0].length;
 
-        if (matrix[0][0] == 1 && matrix[m - 1][n - 1] == 1) return 0;
+        if (matrix[0][0] == 1) return 0;
 
         int[][] dp = new int[m][n];
         dp[0][0] = 1;
