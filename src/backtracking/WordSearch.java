@@ -69,7 +69,8 @@ public class WordSearch {
     private boolean isNotFeasible(char[][] board, int i, int j, boolean[][] visited, String word, int index) {
         return (i < 0
                 || i >= board.length
-                || j < 0 || j >= board[0].length
+                || j < 0
+                || j >= board[0].length
                 || board[i][j] != word.charAt(index)
                 || visited[i][j]);
     }
