@@ -1,4 +1,4 @@
-package design;
+package trie;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,8 @@ class TrieNode {
     Map<Character, TrieNode> children;
     boolean isLeaf;
 
-    TrieNode() {}
+    TrieNode() {
+    }
 
     TrieNode(char c) {
         this.c = c;

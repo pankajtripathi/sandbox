@@ -1,6 +1,4 @@
-package design;
-
-import design.TrieNode;
+package trie;
 
 import java.util.Map;
 
