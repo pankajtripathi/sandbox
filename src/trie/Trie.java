@@ -8,7 +8,7 @@ public class Trie {
     public TrieNode root;
 
     public Trie() {
-        root = new TrieNode();
+        root = new TrieNode(' ');
     }
 
     public boolean startsWith(String prefix) {
