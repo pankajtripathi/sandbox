@@ -44,13 +44,12 @@ public class LinkedListCycle {
             // if it has loop then start with slow as head and then keep iterating slow until it catches up with fast.next
             if (slow == fast) {
                 slow = head;
-                while (slow != fast) {
+                while (slow != null) {
+                    if (slow == fast) return fast;
                     slow = slow.next;
                     fast = fast.next;
                 }
             }
-
-            return fast; // has cycle
         }
 
         return null; // No cycle
