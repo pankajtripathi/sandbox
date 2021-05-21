@@ -1,8 +1,6 @@
 package trees;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class SerializeAndDeserializeBinaryTree {
     Node root = null;
@@ -21,14 +19,14 @@ public class SerializeAndDeserializeBinaryTree {
     }
 
     public String serialize(Node root) {
-        return preOrder(root, "");
+        return preOrder(root, new StringBuilder()).toString();
     }
 
-    private String preOrder(Node root, String res) {
+    private StringBuilder preOrder(Node root, StringBuilder res) {
         if (root == null) {
-            res += "null,";
+            res.append("null,");
         } else {
-            res += String.valueOf(root.data) + ",";
+            res.append(String.valueOf(root.data)).append(",");
             res = preOrder(root.left, res);
             res = preOrder(root.right, res);
         }
@@ -36,22 +34,22 @@ public class SerializeAndDeserializeBinaryTree {
     }
 
     public Node deserialize(String data) {
-        String[] entries = data.split(",");
-        List<String> tree = new ArrayList<>(Arrays.asList(entries));
-        return recreate(tree);
+        Queue<String> nodes = new ArrayDeque<>();
+        for (String node : data.split(",")) {
+            nodes.add(node);
+        }
+        return recreate(nodes);
     }
 
-    private Node recreate(List<String> tree) {
-        if (tree.get(0).equals("null")) {
-            tree.remove(0);
+    private Node recreate(Queue<String> nodes) {
+        String node = nodes.poll();
+        if (node.equals("null")) {
             return null;
         }
 
-        Node root = new Node(Integer.parseInt(tree.get(0)));
-        tree.remove(0);
-
-        root.left = recreate(tree);
-        root.right = recreate(tree);
+        Node root = new Node(Integer.parseInt(node));
+        root.left = recreate(nodes);
+        root.right = recreate(nodes);
 
         return root;
     }
