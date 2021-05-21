@@ -10,7 +10,7 @@ class MyQueue {
     Stack<Integer> s2 = new Stack<>();
 
     public void push(int key) {
-        front = key;
+        if (s1.isEmpty()) front = key;
         s1.push(key);
     }
 
