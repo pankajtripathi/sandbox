@@ -10,11 +10,9 @@ import java.util.Scanner;
 * */
 public class CollectCoins {
     public static void main(String[] args) {
-        int[] coins = {1, 3, 5};
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the sum required: ");
-        int reqSum = scanner.nextInt();
-        new CollectCoins().coinChange(coins, reqSum);
+        int[] coins = {1, 2, 5};
+        new CollectCoins().coinChange(coins, 10);
+        System.out.println(new CollectCoins().allPossibleMethods(coins, 5));
     }
 
     private void coinChange(int[] coins, int reqSum) {
@@ -35,5 +33,18 @@ public class CollectCoins {
         }
 
         System.out.println(min[reqSum]);
+    }
+
+    private int allPossibleMethods(int[] coins, int reqSum) {
+        int[] min = new int[reqSum + 1];
+        min[0] = 1;
+
+        for (int coin : coins) {
+            for (int i = coin; i <= reqSum; i++) {
+                min[i] += min[i - coin];
+            }
+        }
+
+        return min[reqSum];
     }
 }
